@@ -1,0 +1,24 @@
+#home {
+    height: 100vh;
+    width: 100vw;
+}
+.casillas {
+    width: 30em;
+    height: 30em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    border: 20px outset #2b0e01;
+}
+
+.celda {
+    border: 2px solid black;
+}
+
+.celda1 {
+    background-color: white;
+}
+
+.celda2 {
+    background-image: url(../images/texture-1027701_1280.jpg);
+}
