@@ -45,13 +45,14 @@ casillas.map((casilla, /*index*/) => {
                 turnos++;
                 console.log(turnos);
                 interruptor = !interruptor;
+                
             }
 
 
         }
 
         ganar();
-
+        updateHTML();
     })
 });
 
@@ -74,7 +75,6 @@ function ganar() {
             restart();
             window.location.href = "../pages/ganador.html";
             // redirect a la vista de ganador
-
         }
         else {
 
@@ -98,53 +98,63 @@ function restart() {
 
 
 
-const getName = () => {
-    sessionStorage.getItem("jug1Name");
+// function getName (name) {
+//     sessionStorage.getItem(name);
+// }
+
+function updateHTML () {
+    // let name1 = getName("jug1Name");
+    // let name2 = getName("jug2Name");
+
+    document.getElementById("partidajug1").innerHTML = sessionStorage.getItem("jug1Name");
+    document.getElementById("partidajug2").innerHTML = sessionStorage.getItem("jug2Name");
+    // if (interruptor) {
+    //     document.getElementById("indicadorTurno").innerHTML = sessionStorage.getItem("jug1Name");
+    // } else {
+    //     document.getElementById("indicadorTurno").innerHTML = sessionStorage.getItem("jug2Name");
+    // }   
+
+
+    if (interruptor) {
+        document.getElementById("indicadorTurno").innerHTML = `Juega ${sessionStorage.getItem("jug1Name")}`;
+    } else {
+        document.getElementById("indicadorTurno").innerHTML = `Juega ${sessionStorage.getItem("jug2Name")}`;
+    }
+
 }
 
-function updateHTML1() {
-    let name = getName();
-    name = JSON.stringify(name)
-    document.getElementById("partidajug1").innerHTML = name;
+function updateHTML2 () {
+    // if (!interruptor) {
+        document.getElementById("textGanador").innerHTML = `¡Felicidades ${sessionStorage.getItem("jug1Name")}, eres el campeón!`;
+    // } else {
+    //     document.getElementById("textGanador").innerHTML = `¡Felicidades ${sessionStorage.getItem("jug1Name")}, eres el campeón!`;
+    // }
 }
+
+
 
 function saveName() {
     // Gets input value
-    let name = document.getElementById("jug1");
-    name = name.value;
-    let convertido = JSON.stringify(name)
-    // Saves data to retrieve later
-    sessionStorage.setItem("jug1Name", convertido);
-
-}
-
-const getName2 = () => {
-    sessionStorage.getItem("jug2Name");
-}
-
-const updateHTML2 = () => {
-    let name2 = getName2();
-    name2 = JSON.stringify(name2)
-    document.getElementById("partidajug2").innerHTML = name2;
-}
-
-const saveName2 = () => {
-    // Gets input value
+    let name1 = document.getElementById("jug1");
     let name2 = document.getElementById("jug2");
-    name2 = name2.value;
-    let convertido2 = JSON.stringify(name2)
-    // Saves data to retrieve later
-    sessionStorage.setItem("jug2Name", convertido2);
+    // name = name.value;
+    console.log("el nombre es,,,,,,", name1.value);
+    console.log ("el nombre es,,,,,,", name1.value);
+    let nombre1 = name1.value;
+    let nombre2 = name2.value;
+
+    sessionStorage.setItem("jug1Name", nombre1);
+    sessionStorage.setItem("jug2Name", nombre2);
+
+    // Código innecesario... solo me sirve a mi para recordar el error
+    // let convertido1 = JSON.stringify(nombre1)
+    // let convertido2 = JSON.stringify(nombre2)
+    // // Saves data to retrieve later
+    // sessionStorage.setItem("jug1Name", convertido1);
+    // sessionStorage.setItem("jug2Name", convertido2);
 
 }
 
-const getBothNames = 
-
-const getBothNames = () => {
-    updateHTML1();
-    updateHTML2();
-}
-
-getBothNames();
-
+updateHTML();
+updateHTML2 ();
 //  recoger input en html y desplegar la funcion en el boton de siguiente pag
