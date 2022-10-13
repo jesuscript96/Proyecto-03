@@ -6,17 +6,44 @@
 body {
     background-color: #938468;
 }
-.cardscss {
+.marron {
     background-color: #938468;
+}
+.bordenegro {
+    border: 3px solid rgb(27, 27, 27);
+}
+.boton {
+    background-image: url(../images/texture-1027701_1280.jpg);
+    font-size: 2em;
+    border: 2px solid black;
+}
+.boton2 {
+    background-image: url(../images/texture-1027701_1280.jpg);
+    font-size: 1.5em;
+    border: 2px solid black;
+}
+.boton3 {
+    background-image: url(../images/texture-1027701_1280.jpg);
+    font-size: 1em;
+    border: 2px solid black;
+}
+a {
+    font-family: 'MedievalSharp', cursive;
+    color: white
+}
+p {
+    font-family: 'MedievalSharp', cursive;
+}
+.font {
+    font-family: 'MedievalSharp', cursive;
 }
 h1 {
     font-family: 'MedievalSharp', cursive;
 }
+
 .casillas {
-    width: 30em;
-    height: 30em;
-    max-width: 30em;
-    min-height: 30em;
+    width: 23em;
+    height: 23em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -27,8 +54,11 @@ h1 {
 }
 .celda {
     border: 2px solid black;
-    font-size: 5em;
+    font-size: 4em;
     text-align: center;
+}
+.fichasmain {
+    font-size: 5em;
 }
 
 .celda1 {
@@ -38,4 +68,19 @@ h1 {
 .celda2 {
     background-image: url(../images/texture-1027701_1280.jpg);
     color: white;
+    
+    
 }
+.bordersme {
+    border: 5px solid rgb(56, 56, 56);
+}
+
+
+
+
+
+let name2 = document.getElementById("jug2");
+    name2 = name2.value;
+    let convertido2 = JSON.stringify(name2)
+    // Saves data to retrieve later
+    sessionStorage.setItem("jug2Name", convertido2);

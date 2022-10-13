@@ -49,6 +49,7 @@ casillas.map((casilla, /*index*/) => {
 
 
         }
+
         ganar();
 
     })
@@ -69,9 +70,10 @@ function ganar() {
 
         }
         else if (celdaOne == celdaTwo && celdaTwo == celdaThree) {
-            console.log("GANADOR")
+            console.log("GANADOR");
+            restart();
             window.location.href = "../pages/ganador.html";
-        // redirect a la vista de ganador
+            // redirect a la vista de ganador
 
         }
         else {
@@ -80,3 +82,69 @@ function ganar() {
 
     }
 }
+
+// console.log(casillas[0].innerHTML)
+
+function restart() {
+    turnos = 1
+    for (i = 0; i < casillas.length; i++) {
+        casillas[i].innerHTML = "";
+    }
+    
+}
+
+
+
+
+
+
+const getName = () => {
+    sessionStorage.getItem("jug1Name");
+}
+
+function updateHTML1() {
+    let name = getName();
+    name = JSON.stringify(name)
+    document.getElementById("partidajug1").innerHTML = name;
+}
+
+function saveName() {
+    // Gets input value
+    let name = document.getElementById("jug1");
+    name = name.value;
+    let convertido = JSON.stringify(name)
+    // Saves data to retrieve later
+    sessionStorage.setItem("jug1Name", convertido);
+
+}
+
+const getName2 = () => {
+    sessionStorage.getItem("jug2Name");
+}
+
+const updateHTML2 = () => {
+    let name2 = getName2();
+    name2 = JSON.stringify(name2)
+    document.getElementById("partidajug2").innerHTML = name2;
+}
+
+const saveName2 = () => {
+    // Gets input value
+    let name2 = document.getElementById("jug2");
+    name2 = name2.value;
+    let convertido2 = JSON.stringify(name2)
+    // Saves data to retrieve later
+    sessionStorage.setItem("jug2Name", convertido2);
+
+}
+
+const getBothNames = 
+
+const getBothNames = () => {
+    updateHTML1();
+    updateHTML2();
+}
+
+getBothNames();
+
+//  recoger input en html y desplegar la funcion en el boton de siguiente pag
