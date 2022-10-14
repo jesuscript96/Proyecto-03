@@ -45,7 +45,7 @@ casillas.map((casilla, /*index*/) => {
                 turnos++;
                 console.log(turnos);
                 interruptor = !interruptor;
-                
+
             }
 
 
@@ -73,6 +73,8 @@ function ganar() {
         else if (celdaOne == celdaTwo && celdaTwo == celdaThree) {
             console.log("GANADOR");
             restart();
+            let winnerPrint = interruptor
+            sessionStorage.setItem("Ganador", winnerPrint);
             window.location.href = "../pages/ganador.html";
             // redirect a la vista de ganador
         }
@@ -81,6 +83,7 @@ function ganar() {
         }
 
     }
+
 }
 
 // console.log(casillas[0].innerHTML)
@@ -90,7 +93,7 @@ function restart() {
     for (i = 0; i < casillas.length; i++) {
         casillas[i].innerHTML = "";
     }
-    
+
 }
 
 
@@ -102,18 +105,10 @@ function restart() {
 //     sessionStorage.getItem(name);
 // }
 
-function updateHTML () {
-    // let name1 = getName("jug1Name");
-    // let name2 = getName("jug2Name");
+function updateHTML() {
 
     document.getElementById("partidajug1").innerHTML = sessionStorage.getItem("jug1Name");
     document.getElementById("partidajug2").innerHTML = sessionStorage.getItem("jug2Name");
-    // if (interruptor) {
-    //     document.getElementById("indicadorTurno").innerHTML = sessionStorage.getItem("jug1Name");
-    // } else {
-    //     document.getElementById("indicadorTurno").innerHTML = sessionStorage.getItem("jug2Name");
-    // }   
-
 
     if (interruptor) {
         document.getElementById("indicadorTurno").innerHTML = `Juega ${sessionStorage.getItem("jug1Name")}`;
@@ -123,38 +118,29 @@ function updateHTML () {
 
 }
 
-function updateHTML2 () {
-    // if (!interruptor) {
-        document.getElementById("textGanador").innerHTML = `¡Felicidades ${sessionStorage.getItem("jug1Name")}, eres el campeón!`;
-    // } else {
-    //     document.getElementById("textGanador").innerHTML = `¡Felicidades ${sessionStorage.getItem("jug1Name")}, eres el campeón!`;
-    // }
-}
+// function updateHTML2() {
+//     saveName();
+
+//     document.getElementById("textGanador").innerHTML = `¡Felicidades ${sessionStorage.getItem("jug1Name")}, eres el campeón!`;
+// }
 
 
 
 function saveName() {
-    // Gets input value
+
     let name1 = document.getElementById("jug1");
     let name2 = document.getElementById("jug2");
-    // name = name.value;
-    console.log("el nombre es,,,,,,", name1.value);
-    console.log ("el nombre es,,,,,,", name1.value);
+
     let nombre1 = name1.value;
     let nombre2 = name2.value;
 
     sessionStorage.setItem("jug1Name", nombre1);
     sessionStorage.setItem("jug2Name", nombre2);
 
-    // Código innecesario... solo me sirve a mi para recordar el error
-    // let convertido1 = JSON.stringify(nombre1)
-    // let convertido2 = JSON.stringify(nombre2)
-    // // Saves data to retrieve later
-    // sessionStorage.setItem("jug1Name", convertido1);
-    // sessionStorage.setItem("jug2Name", convertido2);
-
 }
 
 updateHTML();
-updateHTML2 ();
-//  recoger input en html y desplegar la funcion en el boton de siguiente pag
+
+
+
+
