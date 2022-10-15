@@ -16,46 +16,250 @@ const conditionToWin = [
 
 let casillas = Array.from(document.getElementsByClassName("celda"))
 
-casillas.map((casilla, /*index*/) => {
-    casilla.addEventListener("click", () => {
-        // click ha representado el evento, la funcion anonima indicara que intrucciones debe seguir la app
+// casillas.map((casilla, /*index*/) => {
+//     casilla.addEventListener("click", () => {
+//         // click ha representado el evento, la funcion anonima indicara que intrucciones debe seguir la app
 
-        if (turnos > 6) {
-            if (casilla.innerHTML == "") {
-                console.log("selecciona una ficha tuya")
+//         if (turnos > 6) {
+//             if (casilla.innerHTML == "") {
+//                 console.log("selecciona una ficha tuya")
 
-                console.log(turnos)
+//                 console.log(turnos)
 
 
-            }
-            else if (interruptor == true && casilla.innerHTML == "X" || interruptor != true && casilla.innerHTML == "O") {
-                casilla.innerHTML = "";
-                turnos = turnos - 1;
-                console.log(turnos)
+//             }
+//             else if (interruptor == true && casilla.innerHTML == "X" || interruptor != true && casilla.innerHTML == "O") {
+//                 casilla.innerHTML = "";
+//                 turnos = turnos - 1;
+//                 console.log(turnos)
+//             }
+//             else {
+//                 console.log("selecciona una ficha tuya")
+
+//                 console.log(turnos)
+//             }
+//         }
+//         else {
+//             if (casilla.innerHTML == "") {
+//                 casilla.innerHTML = (interruptor) ? jugador1pieza : jugador2pieza
+//                 turnos++;
+//                 console.log(turnos);
+//                 interruptor = !interruptor;
+
+//             }
+
+
+//         }
+
+//         ganar();
+//         updateHTML();
+//     })
+// });
+
+function playerCpu () {
+    let randomTry = parseInt(parseInt(Math.random() * 9))
+    console.log(randomTry)
+    console.log(casillas[randomTry])
+    console.log(casillas[randomTry].innerHTML)
+
+    if (turnos > 6) {
+        if (interruptor == true && casillas[randomTry].innerHTML == "X" || interruptor != true && casillas[randomTry].innerHTML == "O") {
+            casillas[randomTry].innerHTML = "";
+            turnos--
+            while(casillas[randomTry].innerHTML != "random"){
+                let randomTry4 = parseInt(parseInt(Math.random() * 9))
+                
+                if(casillas[randomTry4].innerHTML == "" && randomTry4 != randomTry) {
+                    casillas[randomTry4].innerHTML = (interruptor) ? jugador1pieza : jugador2pieza
+                    turnos++;
+                    interruptor = !interruptor
+                    console.log(turnos)
+                    break;
+                } else {
+                    console.log("posición ocupada");
+                }
+            
+
+        }
+
+        }
+
+        else   {
+            while(casillas[randomTry].innerHTML != "random"){
+                let randomTry5 = parseInt(parseInt(Math.random() * 9))
+                if (interruptor == true && casillas[randomTry5].innerHTML == "X" || interruptor != true && casillas[randomTry5].innerHTML == "O") {
+                    casillas[randomTry5].innerHTML = "";
+                    turnos--
+        
+                    while(casillas[randomTry].innerHTML != "random"){
+                        let randomTry7 = parseInt(parseInt(Math.random() * 9))
+                        
+                        if(casillas[randomTry7].innerHTML == "" && randomTry7 != randomTry5) {
+                            casillas[randomTry7].innerHTML = (interruptor) ? jugador1pieza : jugador2pieza
+                            turnos++;
+                            interruptor = !interruptor
+                            console.log(turnos)
+                            break;
+                        } else {
+                            console.log("posición ocupada");
+                        }
+                    
+        
+                }
+                    break;
+                }
+           // -------------------------------------
+       
+
+        
+    } 
+}}
+    else {
+        if (casillas[randomTry].innerHTML == "") {
+            casillas[randomTry].innerHTML = (interruptor) ? jugador1pieza : jugador2pieza
+            turnos++;
+            interruptor = !interruptor
+            console.log(turnos)
+        } else { 
+            while(casillas[randomTry].innerHTML != ""){
+                let randomTry2 = parseInt(parseInt(Math.random() * 9))
+                
+                if(casillas[randomTry2].innerHTML == ""){
+                    casillas[randomTry2].innerHTML = (interruptor) ? jugador1pieza : jugador2pieza
+                    turnos++;
+                    interruptor = !interruptor
+                    console.log(turnos)
+                    break;
+                }else {
+                    console.log("posición ocupada");
+                }
+        }}
+    }
+    
+    ganar ();
+}
+ 
+function typeOfGame () {
+   
+    let radioJug1Humano = sessionStorage.getItem("jug1Humano");
+    let radioJug2Humano = sessionStorage.getItem("jug2Humano");
+    console.log("soy", radioJug1Humano)
+    console.log("soy3", radioJug2Humano)
+
+
+    if (radioJug1Humano == "true") {
+        if (radioJug2Humano == "true") {
+            humanoHumano ();
+        } else {
+            humanoCpu ();
+        }
+    } else {
+        if (radioJug2Humano == "true") {
+            cpuHumano ();
+        } else {
+            console.log("CPU cannot play CPU")
+        }
+    }
+}
+
+function humanoHumano () {
+    casillas.map((casilla, /*index*/) => {
+        casilla.addEventListener("click", () => {
+            // click ha representado el evento, la funcion anonima indicara que intrucciones debe seguir la app
+    
+            if (turnos > 6) {
+                if (casilla.innerHTML == "") {
+                    console.log("selecciona una ficha tuya")
+    
+                    console.log(turnos)
+    
+    
+                }
+                else if (interruptor == true && casilla.innerHTML == "X" || interruptor != true && casilla.innerHTML == "O") {
+                    casilla.innerHTML = "";
+                    turnos = turnos - 1;
+                    console.log(turnos)
+                }
+                else {
+                    console.log("selecciona una ficha tuya")
+    
+                    console.log(turnos)
+                }
             }
             else {
-                console.log("selecciona una ficha tuya")
-
-                console.log(turnos)
+                if (casilla.innerHTML == "") {
+                    casilla.innerHTML = (interruptor) ? jugador1pieza : jugador2pieza
+                    turnos++;
+                    console.log(turnos);
+                    interruptor = !interruptor;
+    
+                }
+    
+    
             }
-        }
-        else {
-            if (casilla.innerHTML == "") {
-                casilla.innerHTML = (interruptor) ? jugador1pieza : jugador2pieza
-                turnos++;
-                console.log(turnos);
-                interruptor = !interruptor;
+    
+            ganar();
+            updateHTML();
+        })
+    });
+}
 
+function humanoCpu () {
+    casillas.map((casilla, /*index*/) => {
+        casilla.addEventListener("click", () => {
+            // click ha representado el evento, la funcion anonima indicara que intrucciones debe seguir la app
+    
+            if (turnos > 6) {
+                if (casilla.innerHTML == "") {
+                    console.log("selecciona una ficha tuya")
+    
+                    console.log(turnos)
+    
+    
+                }
+                else if (interruptor == true && casilla.innerHTML == "X" || interruptor != true && casilla.innerHTML == "O") {
+                    casilla.innerHTML = "";
+                    turnos = turnos - 1;
+                    console.log(turnos)
+                }
+                else {
+                    console.log("selecciona una ficha tuya")
+    
+                    console.log(turnos)
+                }
             }
+            else {
+                if (casilla.innerHTML == "") {
+                    casilla.innerHTML = (interruptor) ? jugador1pieza : jugador2pieza
+                    turnos++;
+                    interruptor = !interruptor;
+                    ganar();
+                    playerCpu ()
+    
+                }
+    
+    
+            }
+    
+           
+            updateHTML();
+        })
+        
+    });
+}
 
 
-        }
 
-        ganar();
-        updateHTML();
-    })
-});
-
+function cpuHumano () {
+    let randomTry10 = parseInt(parseInt(Math.random() * 9))
+    console.log(randomTry10)
+    console.log(casillas[randomTry10])
+    console.log(casillas[randomTry10].innerHTML)
+    casillas[randomTry10].innerHTML = "X"
+    turnos++
+    interruptor = !interruptor
+    humanoCpu ()
+}
 
 function ganar() {
     for (i = 0; i < conditionToWin.length; i++) {
@@ -72,7 +276,16 @@ function ganar() {
         }
         else if (celdaOne == celdaTwo && celdaTwo == celdaThree) {
             console.log("GANADOR");
+            if (radio1Humano =! "true") {
+                
+                console.log(radio1Humano)
+                console.log(interruptor)
+            }
+
             restart();
+
+            
+
             let winnerPrint = interruptor
             sessionStorage.setItem("Ganador", winnerPrint);
             window.location.href = "../pages/ganador.html";
@@ -93,17 +306,9 @@ function restart() {
     for (i = 0; i < casillas.length; i++) {
         casillas[i].innerHTML = "";
     }
+    typeOfGame ()
 
 }
-
-
-
-
-
-
-// function getName (name) {
-//     sessionStorage.getItem(name);
-// }
 
 function updateHTML() {
 
@@ -141,16 +346,6 @@ function saveRadios () {
     let radio2Humano = document.getElementById("jug2Humano").checked;
     let radio2Cpu = document.getElementById("jug2Cpu").checked;
 
-    // let tipo1Humano = radio1Humano.value;
-    // let tipo1Cpu = radio1Cpu.value;
-    // let tipo2Humano = radio2Humano.value;
-    // let tipo2Cpu = radio2Cpu.value;
-
-    // sessionStorage.setItem("jug1Humano", tipo1Humano);
-    // sessionStorage.setItem("jug1Cpu", tipo1Cpu);
-    // sessionStorage.setItem("jug2Humano", tipo2Humano);
-    // sessionStorage.setItem("jug2Cpu", tipo2Cpu);
-
     sessionStorage.setItem("jug1Humano", radio1Humano);
     sessionStorage.setItem("jug1Cpu", radio1Cpu);
     sessionStorage.setItem("jug2Humano", radio2Humano);
@@ -161,25 +356,27 @@ function saveRadios () {
 function saveInfoPlayers () {
     saveName ();
     saveRadios();
+    // typeOfGame ()
 }
 
-function showRadius () {
-    let dimelo = sessionStorage.getItem("jug1Humano");
-    let dimelo2 = sessionStorage.getItem("jug1Cpu");
-    let dimelo3 = sessionStorage.getItem("jug2Humano");
-    let dimelo4 = sessionStorage.getItem("jug2Cpu");
-    console.log("soy", dimelo)
-    console.log("soy2", dimelo2)
-    console.log("soy3", dimelo3)
-    console.log("soy4", dimelo4)
-    if (dimelo == "true") {
-        console.log("exito")
-    }
+// function showRadius () {
+//     let radioJug1Humano = sessionStorage.getItem("jug1Humano");
+//     let radioJug1Cpu = sessionStorage.getItem("jug1Cpu");
+//     let radioJug2Humano = sessionStorage.getItem("jug2Humano");
+//     let radioJug2Cpu = sessionStorage.getItem("jug2Cpu");
+//     console.log("soy", radioJug1Humano)
+//     console.log("soy2", radioJug1Cpu)
+//     console.log("soy3", radioJug2Humano)
+//     console.log("soy4", radioJug2Cpu)
+//     if (radioJug1Humano == "true") {
+//         console.log("exito")
+//     }
 
-}
+// }
 
-showRadius ()
+// showRadius ()
 updateHTML();
+typeOfGame ()
 
 // function saveRadio {
 //     let name1 = document.getElementById("jug1");
@@ -210,4 +407,4 @@ updateHTML();
 //     sessionStorage.setItem("jug2Humano", tipo2Humano);
 //     sessionStorage.setItem("jug2Cpu", tipo2Cpu);
     
-// }
+//
