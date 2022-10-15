@@ -118,12 +118,6 @@ function updateHTML() {
 
 }
 
-// function updateHTML2() {
-//     saveName();
-
-//     document.getElementById("textGanador").innerHTML = `¡Felicidades ${sessionStorage.getItem("jug1Name")}, eres el campeón!`;
-// }
-
 
 
 function saveName() {
@@ -139,8 +133,81 @@ function saveName() {
 
 }
 
+
+
+function saveRadios () {
+    let radio1Humano = document.getElementById("jug1Humano").checked;
+    let radio1Cpu = document.getElementById("jug1Cpu").checked;
+    let radio2Humano = document.getElementById("jug2Humano").checked;
+    let radio2Cpu = document.getElementById("jug2Cpu").checked;
+
+    // let tipo1Humano = radio1Humano.value;
+    // let tipo1Cpu = radio1Cpu.value;
+    // let tipo2Humano = radio2Humano.value;
+    // let tipo2Cpu = radio2Cpu.value;
+
+    // sessionStorage.setItem("jug1Humano", tipo1Humano);
+    // sessionStorage.setItem("jug1Cpu", tipo1Cpu);
+    // sessionStorage.setItem("jug2Humano", tipo2Humano);
+    // sessionStorage.setItem("jug2Cpu", tipo2Cpu);
+
+    sessionStorage.setItem("jug1Humano", radio1Humano);
+    sessionStorage.setItem("jug1Cpu", radio1Cpu);
+    sessionStorage.setItem("jug2Humano", radio2Humano);
+    sessionStorage.setItem("jug2Cpu", radio2Cpu);
+    
+}
+
+function saveInfoPlayers () {
+    saveName ();
+    saveRadios();
+}
+
+function showRadius () {
+    let dimelo = sessionStorage.getItem("jug1Humano");
+    let dimelo2 = sessionStorage.getItem("jug1Cpu");
+    let dimelo3 = sessionStorage.getItem("jug2Humano");
+    let dimelo4 = sessionStorage.getItem("jug2Cpu");
+    console.log("soy", dimelo)
+    console.log("soy2", dimelo2)
+    console.log("soy3", dimelo3)
+    console.log("soy4", dimelo4)
+    if (dimelo == "true") {
+        console.log("exito")
+    }
+
+}
+
+showRadius ()
 updateHTML();
 
+// function saveRadio {
+//     let name1 = document.getElementById("jug1");
+//     let name2 = document.getElementById("jug2");
+
+//     let nombre1 = name1.value;
+//     let nombre2 = name2.value;
+
+//     sessionStorage.setItem("jug1Name", nombre1);
+//     sessionStorage.setItem("jug2Name", nombre2);
+// }
 
 
 
+// function saveRadios () {
+//     let radio1Humano = document.getElementById("jug1Humano");
+//     let radio1Cpu = document.getElementById("jug1Cpu");
+//     let radio2Humano = document.getElementById("jug2Humano");
+//     let radio2Cpu = document.getElementById("jug2Cpu");
+
+//     let tipo1Humano = radio1Humano.value;
+//     let tipo1Cpu = radio1Cpu.value;
+//     let tipo2Humano = radio2Humano.value;
+//     let tipo2Cpu = radio2Cpu.value;
+
+//     sessionStorage.setItem("jug1Humano", tipo1Humano);
+//     sessionStorage.setItem("jug1Cpu", tipo1Cpu);
+//     sessionStorage.setItem("jug2Humano", tipo2Humano);
+//     sessionStorage.setItem("jug2Cpu", tipo2Cpu);
+    
+// }
