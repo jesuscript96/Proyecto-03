@@ -59,6 +59,10 @@ let casillas = Array.from(document.getElementsByClassName("celda"))
 // });
 
 function playerCpu () {
+    setTimeout (playerCpuTime, 500)
+}
+
+function playerCpuTime () {
     let randomTry = parseInt(parseInt(Math.random() * 9))
     console.log(randomTry)
     console.log(casillas[randomTry])
@@ -140,7 +144,7 @@ function playerCpu () {
     
     ganar ();
 }
- 
+
 function typeOfGame () {
    
     let radioJug1Humano = sessionStorage.getItem("jug1Humano");
@@ -250,8 +254,6 @@ function humanoCpu () {
     });
 }
 
-
-
 function cpuHumano () {
     let randomTry10 = parseInt(parseInt(Math.random() * 9))
     console.log(randomTry10)
@@ -283,11 +285,13 @@ function ganar() {
                 console.log(interruptor)
             }
 
-            restart();
-
+            
+                // interruptor = !interruptor
             
 
-            let winnerPrint = interruptor
+            restart();
+            
+            let winnerPrint = !interruptor
             sessionStorage.setItem("Ganador", winnerPrint);
             window.location.href = "../pages/ganador.html";
             // redirect a la vista de ganador
@@ -300,11 +304,9 @@ function ganar() {
 
 }
 
-// console.log(casillas[0].innerHTML)
-
 function restart() {
     turnos = 1
-    interruptor = true;
+    // interruptor = true;
     for (i = 0; i < casillas.length; i++) {
         casillas[i].innerHTML = "";
     }
@@ -339,7 +341,7 @@ function updateHTML() {
             console.log("CPU cannot play CPU")
         }
     }
-
+// set type of playerMark
     if (radioJug1Humano == "true") {
         if (radioJug2Humano == "true") {
             document.getElementById("markPlayer1").innerHTML = "X";
@@ -359,15 +361,17 @@ function updateHTML() {
 
 
     // set currentPlayer
-    if (interruptor) {
-        document.getElementById("indicadorTurno").innerHTML = `Juega ${sessionStorage.getItem("jug1Name")}`;
-    } else {
+    if (radioJug1Humano != "true") {
         document.getElementById("indicadorTurno").innerHTML = `Juega ${sessionStorage.getItem("jug2Name")}`;
+    } else {
+        if (interruptor) {
+            document.getElementById("indicadorTurno").innerHTML = `Juega ${sessionStorage.getItem("jug1Name")}`;
+        } else {
+            document.getElementById("indicadorTurno").innerHTML = `Juega ${sessionStorage.getItem("jug2Name")}`;
+        }
+    }   
+    
     }
-
-}
-
-
 
 function saveName() {
 
@@ -381,8 +385,6 @@ function saveName() {
     sessionStorage.setItem("jug2Name", nombre2);
 
 }
-
-
 
 function saveRadios () {
     let radio1Humano = document.getElementById("jug1Humano").checked;
@@ -403,52 +405,5 @@ function saveInfoPlayers () {
     // typeOfGame ()
 }
 
-// function showRadius () {
-//     let radioJug1Humano = sessionStorage.getItem("jug1Humano");
-//     let radioJug1Cpu = sessionStorage.getItem("jug1Cpu");
-//     let radioJug2Humano = sessionStorage.getItem("jug2Humano");
-//     let radioJug2Cpu = sessionStorage.getItem("jug2Cpu");
-//     console.log("soy", radioJug1Humano)
-//     console.log("soy2", radioJug1Cpu)
-//     console.log("soy3", radioJug2Humano)
-//     console.log("soy4", radioJug2Cpu)
-//     if (radioJug1Humano == "true") {
-//         console.log("exito")
-//     }
-
-// }
-
-// showRadius ()
 updateHTML();
 typeOfGame ()
-
-// function saveRadio {
-//     let name1 = document.getElementById("jug1");
-//     let name2 = document.getElementById("jug2");
-
-//     let nombre1 = name1.value;
-//     let nombre2 = name2.value;
-
-//     sessionStorage.setItem("jug1Name", nombre1);
-//     sessionStorage.setItem("jug2Name", nombre2);
-// }
-
-
-
-// function saveRadios () {
-//     let radio1Humano = document.getElementById("jug1Humano");
-//     let radio1Cpu = document.getElementById("jug1Cpu");
-//     let radio2Humano = document.getElementById("jug2Humano");
-//     let radio2Cpu = document.getElementById("jug2Cpu");
-
-//     let tipo1Humano = radio1Humano.value;
-//     let tipo1Cpu = radio1Cpu.value;
-//     let tipo2Humano = radio2Humano.value;
-//     let tipo2Cpu = radio2Cpu.value;
-
-//     sessionStorage.setItem("jug1Humano", tipo1Humano);
-//     sessionStorage.setItem("jug1Cpu", tipo1Cpu);
-//     sessionStorage.setItem("jug2Humano", tipo2Humano);
-//     sessionStorage.setItem("jug2Cpu", tipo2Cpu);
-    
-//
