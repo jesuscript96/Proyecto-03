@@ -1,3 +1,5 @@
+// el puto turno de cpu-humano jesuhumano no sabe resolver.... hay temas de interruptor
+
 let interruptor = true;
 let jugador1pieza = "X";
 let jugador2pieza = "O";
@@ -255,9 +257,8 @@ function cpuHumano () {
     console.log(randomTry10)
     console.log(casillas[randomTry10])
     console.log(casillas[randomTry10].innerHTML)
-    casillas[randomTry10].innerHTML = "X"
+    casillas[randomTry10].innerHTML = "O"
     turnos++
-    interruptor = !interruptor
     humanoCpu ()
 }
 
@@ -303,6 +304,7 @@ function ganar() {
 
 function restart() {
     turnos = 1
+    interruptor = true;
     for (i = 0; i < casillas.length; i++) {
         casillas[i].innerHTML = "";
     }
@@ -312,9 +314,51 @@ function restart() {
 
 function updateHTML() {
 
+    // Set names
     document.getElementById("partidajug1").innerHTML = sessionStorage.getItem("jug1Name");
     document.getElementById("partidajug2").innerHTML = sessionStorage.getItem("jug2Name");
 
+    // set type of player
+    let radioJug1Humano = sessionStorage.getItem("jug1Humano");
+    let radioJug2Humano = sessionStorage.getItem("jug2Humano");
+
+    
+    if (radioJug1Humano == "true") {
+        if (radioJug2Humano == "true") {
+            document.getElementById("typeOfPlayer1").innerHTML = "Humano";
+            document.getElementById("typeOfPlayer2").innerHTML = "Humano";
+        } else {
+            document.getElementById("typeOfPlayer1").innerHTML = "Humano";
+            document.getElementById("typeOfPlayer2").innerHTML = "CPU";
+        }
+    } else {
+        if (radioJug2Humano == "true") {
+            document.getElementById("typeOfPlayer1").innerHTML = "CPU";
+            document.getElementById("typeOfPlayer2").innerHTML = "Humano";
+        } else {
+            console.log("CPU cannot play CPU")
+        }
+    }
+
+    if (radioJug1Humano == "true") {
+        if (radioJug2Humano == "true") {
+            document.getElementById("markPlayer1").innerHTML = "X";
+            document.getElementById("markPlayer2").innerHTML = "O";
+        } else {
+            document.getElementById("markPlayer1").innerHTML = "X";
+            document.getElementById("markPlayer2").innerHTML = "O";
+        }
+    } else {
+        if (radioJug2Humano == "true") {
+            document.getElementById("markPlayer1").innerHTML = "O";
+            document.getElementById("markPlayer2").innerHTML = "X";
+        } else {
+            console.log("CPU cannot play CPU")
+        }
+    }
+
+
+    // set currentPlayer
     if (interruptor) {
         document.getElementById("indicadorTurno").innerHTML = `Juega ${sessionStorage.getItem("jug1Name")}`;
     } else {
