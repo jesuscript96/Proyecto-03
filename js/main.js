@@ -279,20 +279,19 @@ function ganar() {
         }
         else if (celdaOne == celdaTwo && celdaTwo == celdaThree) {
             console.log("GANADOR");
-            if (radio1Humano =! "true") {
-                
-                console.log(radio1Humano)
-                console.log(interruptor)
-            }
 
-            
-                // interruptor = !interruptor
-            
+            // let radioJug1Humano = sessionStorage.getItem("jug1Humano");
 
-            restart();
+            // if (radioJug1Humano != "true") {
+            //     interruptor != interruptor
+            // }
             
-            let winnerPrint = !interruptor
+            let winnerPrint = interruptor
+
+           
+           
             sessionStorage.setItem("Ganador", winnerPrint);
+            restart();
             window.location.href = "../pages/ganador.html";
             // redirect a la vista de ganador
         }

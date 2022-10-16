@@ -16,12 +16,23 @@ function updateHTMLWinner() {
     console.log(winnerFinal)
     console.log(typeof(winnerFinal))
 
-    if (winnerFinal == "true") {
-        updateHTML2();
-    } else if (winnerFinal == "false") {
-        updateHTML3();
+    let radioJug1Humano = sessionStorage.getItem("jug1Humano");
+
+    if (radioJug1Humano != "true") {
+        if (winnerFinal == "true") {
+            updateHTML3();
+        } else if (winnerFinal == "false") {
+            updateHTML2();
+        }
+    } else {
+        if (winnerFinal == "true") {
+            updateHTML2();
+        } else if (winnerFinal == "false") {
+            updateHTML3();
+        }
     }
-    
+
+      
 
 }
 updateHTMLWinner();
