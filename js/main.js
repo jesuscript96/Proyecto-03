@@ -1,4 +1,4 @@
-// el puto turno de cpu-humano jesuhumano no sabe resolver.... hay temas de interruptor
+
 
 let interruptor = true;
 let jugador1pieza = "X";
@@ -14,7 +14,6 @@ const conditionToWin = [
     [0, 4, 8],
     [2, 4, 6]
 ];
-// let tableroActualizado = ["", "", "", "", "", "", "", "", ""];
 
 let casillas = Array.from(document.getElementsByClassName("celda"))
 
@@ -58,11 +57,12 @@ let casillas = Array.from(document.getElementsByClassName("celda"))
 //     })
 // });
 
-function playerCpu () {
+ 
+const playerCpu = () => {
     setTimeout (playerCpuTime, 500)
 }
 
-function playerCpuTime () {
+const playerCpuTime = () => {
     let randomTry = parseInt(parseInt(Math.random() * 9))
     console.log(randomTry)
     console.log(casillas[randomTry])
@@ -145,7 +145,7 @@ function playerCpuTime () {
     ganar ();
 }
 
-function typeOfGame () {
+const typeOfGame = () => {
    
     let radioJug1Humano = sessionStorage.getItem("jug1Humano");
     let radioJug2Humano = sessionStorage.getItem("jug2Humano");
@@ -168,7 +168,7 @@ function typeOfGame () {
     }
 }
 
-function humanoHumano () {
+const humanoHumano = () => {
     casillas.map((casilla, /*index*/) => {
         casilla.addEventListener("click", () => {
             // click ha representado el evento, la funcion anonima indicara que intrucciones debe seguir la app
@@ -210,7 +210,7 @@ function humanoHumano () {
     });
 }
 
-function humanoCpu () {
+const humanoCpu = () => {
     casillas.map((casilla, /*index*/) => {
         casilla.addEventListener("click", () => {
             // click ha representado el evento, la funcion anonima indicara que intrucciones debe seguir la app
@@ -254,7 +254,7 @@ function humanoCpu () {
     });
 }
 
-function cpuHumano () {
+const cpuHumano = () => {
     let randomTry10 = parseInt(parseInt(Math.random() * 9))
     console.log(randomTry10)
     console.log(casillas[randomTry10])
@@ -264,7 +264,7 @@ function cpuHumano () {
     humanoCpu ()
 }
 
-function ganar() {
+const ganar = () => {
     for (i = 0; i < conditionToWin.length; i++) {
         let checks = conditionToWin[i];
         let celdaOne = casillas[checks[0]].innerHTML;
@@ -303,7 +303,7 @@ function ganar() {
 
 }
 
-function restart() {
+const restart = () => {
     turnos = 1
     // interruptor = true;
     for (i = 0; i < casillas.length; i++) {
@@ -313,7 +313,7 @@ function restart() {
 
 }
 
-function updateHTML() {
+const updateHTML = () => {
 
     // Set names
     document.getElementById("partidajug1").innerHTML = sessionStorage.getItem("jug1Name");
@@ -372,7 +372,7 @@ function updateHTML() {
     
     }
 
-function saveName() {
+const saveName = () => {
 
     let name1 = document.getElementById("jug1");
     let name2 = document.getElementById("jug2");
@@ -385,7 +385,7 @@ function saveName() {
 
 }
 
-function saveRadios () {
+const saveRadios = () => {
     let radio1Humano = document.getElementById("jug1Humano").checked;
     let radio1Cpu = document.getElementById("jug1Cpu").checked;
     let radio2Humano = document.getElementById("jug2Humano").checked;
@@ -398,7 +398,7 @@ function saveRadios () {
     
 }
 
-function saveInfoPlayers () {
+const saveInfoPlayers = () => {
     saveName ();
     saveRadios();
     // typeOfGame ()
