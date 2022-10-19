@@ -398,10 +398,35 @@ const saveRadios = () => {
     
 }
 
+const blockGame = () => {
+    let radioJug1Humano = sessionStorage.getItem("jug1Humano");
+    let radioJug2Humano = sessionStorage.getItem("jug2Humano");
+    let jugador1Nombre = sessionStorage.getItem("jug1Name");
+    let jugador2Nombre = sessionStorage.getItem("jug2Name");
+
+    if (jugador1Nombre == "" || jugador2Nombre == "") {
+        alert("Indicar los nombres de ambos jugadores es obligatorio")
+    } else {
+        if (radioJug1Humano == "true") {
+            if (radioJug2Humano == "true") {
+                location.href = "../pages/juego.html";
+            } else {
+                location.href = "../pages/juego.html";
+            }
+        } else {
+            if (radioJug2Humano == "true") {
+                location.href = "../pages/juego.html";
+            } else {
+                alert("Elige los tipos de jugadores. Los tipos de partida disponibles son: humanoVShumano, humanoVScpu, cpuVScpu")
+            }
+        }
+    }
+}
+
 const saveInfoPlayers = () => {
     saveName ();
     saveRadios();
-    // typeOfGame ()
+    blockGame ();
 }
 
 updateHTML();
